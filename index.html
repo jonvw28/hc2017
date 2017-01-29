@@ -1,36 +1,100 @@
 <head>
-	<title>Live event Notifier</title>
+	<title>What's the latest?</title>
     <meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<style>
 		input[type=button] {
-			background-color: green;
+			background-color: #99ffcc;
 		}
 	</style>
 </head>
 <body>
-	<form id="frm1">
-		Where are you?<br>
-		<input type="radio" name="location" value="Cambridge" id="r1" checked="checked">Cambridge
-		<br>
-		<input type="radio" name="location" value="Oxford" id="r2">Oxford
-		<br>
-		<input type="radio" name="location" value="London" id="r3">London
-		<br>
-		<input type="button" onclick="feed_sub()" value="Set Location and Get Events"><br>
-		What's on?<br>
-		<input type="text" name="actvity" value="eg. Parade" id="activity">
-		<br>
-		<input type="button" onclick="feed_append(document.getElementById('activity').value)" value="Submit Event">
-	</form> 
-	<ul id="feed_items">
-	</ul>
-	
-	<a class="twitter-timeline"  href="https://twitter.com/hashtag/cambridge" data-widget-id="825520061171560448">#cambridge Tweets</a>
-	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-          
+	<div class="header" id="header">
+        <center><h1><font size="50pt">What's the Latest?</font></h1></center>
+		<br><br>
+	</div>
+	<div class="selecter" id="selecter">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4" id="loc_q1">
+					<div class="alert alert-info" id="cambridge" onclick="feed_sub('cambridge')">
+						<center><strong><font size="6pt">#Cambridge</font></strong></center>
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4" id="loc_q2">
+					<div class="alert alert-info" id="london" onclick=	"feed_sub('london')">
+						<center><strong><font size="6pt">#London</font></strong></center> 
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4" id="loc_q3">
+					<div class="alert alert-info" id="oxford" onclick=	"feed_sub('oxford')">
+						<center><strong><font size="6pt">#Oxford</font></strong></center> 
+					</div>
+				</div>
+			</div>
+		</div>	
+	</div>
+	<br>
+	<form class="form-horizontal">
+		<div class="form-group">
+			<label class="control-label col-sm-2" for="email">What's on?:</label>
+			<div class="col-sm-8">
+				<input type="activity" class="form-control" id="activity" placeholder="eg. Hack Cambridge">
+			</div>
+			<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+				<input type="button" class="btn btn-default" value="Submit" onclick="feed_append(document.getElementById('activity').value)" color="green"></button>
+			</div>
+		</div>
+	</form>
+	<br>
+	<center><h2>Here's What We Found!</h2></center>
+	<br>
+	<div class="output" id="output">
+		<div class="row">
+			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" id="list_feed">
+				<center>
+					<ul id="feed_items">
+					</ul>
+				</center>
+				<br>
+				<br>
+			</div>
+			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" id="list_feed">
+				<center>
+					<img src="https://img.clipartfest.com/1c873b31098f9467c3f48a2974e08c0a_question-mark-pictures-of-clipart-of-question-mark_795-644.jpeg" class="img-responsive" id="pic">
+				</center>
+			</div>
+		</div>
+	</div>
+	<br><br>
+	<center><h2>Here's What Twitter is Saying:</h2></center>
+	<br><br>
+	<div class="twitter">
+		<div class="row">
+			<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4" id="camtweets">
+				<a class="twitter-timeline"  href="https://twitter.com/hashtag/cambridge" data-widget-id="825520061171560448">#cambridge Tweets</a>
+			</div>
+			<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4" id="lontweets">
+				<a class="twitter-timeline"  href="https://twitter.com/hashtag/london" data-widget-id="825676998215340032">#london Tweets</a>
+			</div>
+			<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4" id="oxtweets">
+				<a class="twitter-timeline"  href="https://twitter.com/hashtag/oxford" data-widget-id="825675275350507521">#oxford Tweets</a>
+			</div>
+		</div>
+	</div>
+		
+		
+	</div>        
+		  
 	<script src="https://js.pusher.com/platform/latest/pusher-platform.js"></script>
 	<script src="https://js.pusher.com/platform/latest/pusher-platform.min.js"></script>
 	<script src="./appender.js"></script>
+	<script src ="./jquery-3.1.1.js"></script>
+	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+	<script>
+		$('.cambridge').click(function(){
+			$('#twitter-timeline').hide();
+		});
+	</script>
 </body

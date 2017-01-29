@@ -26,19 +26,18 @@ function feed_sub(id){
 		onError: error => console.error('Error:', error),
 	});
 	document.getElementById(id).className = "alert alert-success"
-	var a = document.getElementById('tweets')
 	if(id == 'cambridge'){
-		a.href = "https://twitter.com/hashtag/cambridge"; 
-		//a.data-widget-id = "825520061171560448";
+		document.getElementById("pic").src = "http://www.thedrinksbusiness.com/wordpress/wp-content/uploads/2014/02/Kings_College_Chapel_Cambridge.jpg";
 	}
 	 if(id == 'london'){
-		a.href = "https://twitter.com/hashtag/london";
-		//a.data-widget-id = "825676998215340032";		
+		 document.getElementById("pic").src = "https://media.timeout.com/images/100644443/image.jpg";
+		
 	}
 	if(id == 'oxford'){
-		a.href = "https://twitter.com/hashtag/oxford"; 
-		//a.data-widget-id = "825675275350507521";
+		document.getElementById("pic").src = "http://www.trbimg.com/img-55fb428d/turbine/os-landfill-stinks-avalon-park-20150917";
+		
 	}
+
 }
 
 
