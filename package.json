@@ -16,9 +16,5 @@
     "pify": "^2.3.0",
     "request": "^2.79.0",
     "snoowrap": "^1.12.0"
-  },
-  "scripts": {
-    "append": "node ./bin/append"
-	"serve": "node ./bin/server.js"
   }
 }
